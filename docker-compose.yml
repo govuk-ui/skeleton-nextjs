@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  example-govuk-ui-skeleton:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - default
+    ports:
+      - "3000:3000"
