@@ -36,3 +36,6 @@ next-env.d.ts
 
 # sqlite3
 session.db
+
+# IntelliJ
+.idea
