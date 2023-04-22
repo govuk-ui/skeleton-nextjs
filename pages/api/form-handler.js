@@ -26,14 +26,14 @@ export default async function handler (req, res) {
         pageConfig = require(`./page-configurations${pageId}.js`);
       } catch (e) {
         console.log(`No page config found for page ${pageId} or config is badly formatted, redirecting back to ${pageId}`);
-        res.redirect(302, `${pageId}`);
+        return res.redirect(302, `${pageId}`);
       }
 
       if (pageConfig) {
-        const validationErrors = await validate(sessionId, pageId, pageConfig);
+        const validationErrors = await validate(sessionId, pageSlug, pageConfig);
         if (validationErrors) {
           await setValidationErrorsForPage(sessionId, pageSlug, validationErrors)
-          res.redirect(302, `${pageId}`);
+          return res.redirect(302, `${pageId}`);
         }
 
         console.log(`No validation errors, clearing any existing validation state for page: ${pageSlug}`)
@@ -41,7 +41,7 @@ export default async function handler (req, res) {
 
         const nextPage = await router(sessionId, pagePrefix);
 
-        res.redirect(302, `${pagePrefix}/${nextPage}`);
+        return res.redirect(302, `${pagePrefix}/${nextPage}`);
       }
     } catch (e) {
       console.log("Error: ", e)

@@ -15,7 +15,7 @@ export default function Document() {
         </Container>
         <Footer />
         <NextScript />
-        <Script src="govuk.js" strategy="beforeInteractive" />
+        <Script src="/govuk.js" strategy="beforeInteractive" />
       </body>
     </Html>
   )
