@@ -13,17 +13,14 @@ export default function Index({}) {
   return (
     <>
       <Head>
-        <title>Example Service Name - GOV.UK</title>
+        <title>{ `${ t('home:pageTitle') } - ${ t('common:govuk') }` }</title>
       </Head>
       <Typography variant="l" component="h1">
-        Example Service Name
-      </Typography>
-      <Typography>
-        { t('common:pageTitle') }
+        { t('home:pageTitle') }
       </Typography>
       <Link href={'/example/start'}>
         <Button isStartButton>
-          Start
+          { t('common:buttons.start') }
         </Button>
       </Link>
     </>

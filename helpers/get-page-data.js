@@ -19,9 +19,7 @@ export const getPageData = async (context) => {
       pageId: context.resolvedUrl,
       data,
       validation,
-      ...(await serverSideTranslations('en', [
-        'common',
-      ])),
+      ...(await serverSideTranslations('en')),
     }
   }
 }

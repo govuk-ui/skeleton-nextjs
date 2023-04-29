@@ -1,3 +1,6 @@
 {
-  "pageTitle": "Test title"
+  "buttons": {
+    "start": "Start"
+  },
+  "govuk": "GOV.UK"
 }
