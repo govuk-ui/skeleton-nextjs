@@ -1,7 +1,8 @@
-import '@/styles/govuk.sass';
 import Script from 'next/script';
+import { appWithTranslation } from 'next-i18next';
+import '@/styles/govuk.sass';
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <>
       <Script id="gov-js-enabled">
@@ -14,3 +15,5 @@ export default function App({ Component, pageProps }) {
     </>
   )
 }
+
+export default appWithTranslation(App);

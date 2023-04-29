@@ -1,4 +1,5 @@
 import { getDataForPage, getValidationErrorsForPage } from "@/lib/session";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 /**
  * Get the pageId, data and validation errors for a page
@@ -17,7 +18,10 @@ export const getPageData = async (context) => {
     props: {
       pageId: context.resolvedUrl,
       data,
-      validation
+      validation,
+      ...(await serverSideTranslations('en', [
+        'common',
+      ])),
     }
   }
 }

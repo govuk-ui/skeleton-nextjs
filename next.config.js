@@ -1,3 +1,5 @@
+const { i18n } = require('./next-i18next.config');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -8,6 +10,7 @@ const nextConfig = {
     REDIS_HOST: process.env.REDIS_HOST || 'localhost',
     REDIS_PORT: process.env.REDIS_PORT || 6379,
   },
+  i18n,
 }
 
 module.exports = nextConfig
