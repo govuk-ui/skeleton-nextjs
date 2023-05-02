@@ -10,6 +10,8 @@ export const getPageData = async (context) => {
   const pageId = context.resolvedUrl.split('/').pop();
   const cookies = context.req.cookies;
 
+  const locale = cookies.locale || 'en';
+
   const sessionId = cookies[process.env.SESSION_COOKIE_NAME];
   const data = await getDataForPage(sessionId, pageId) || null;
   const validation = await getValidationErrorsForPage(sessionId, pageId) || null;
@@ -19,7 +21,7 @@ export const getPageData = async (context) => {
       pageId: context.resolvedUrl,
       data,
       validation,
-      ...(await serverSideTranslations('en')),
+      ...(await serverSideTranslations(locale)),
     }
   }
 }
