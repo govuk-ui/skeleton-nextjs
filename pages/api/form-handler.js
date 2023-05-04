@@ -23,9 +23,10 @@ export default async function handler (req, res) {
 
       let pageConfig;
       try {
-        pageConfig = require(`./page-configurations${pageId}.js`);
+        pageConfig = await import(`./page-configurations${pageId}`);
       } catch (e) {
         console.log(`No page config found for page ${pageId} or config is badly formatted, redirecting back to ${pageId}`);
+        console.log(e);
         return res.redirect(302, `${pageId}`);
       }
 
@@ -39,7 +40,8 @@ export default async function handler (req, res) {
         console.log(`No validation errors, clearing any existing validation state for page: ${pageSlug}`)
         await clearValidationErrorsForPage(sessionId, pageSlug);
 
-        const nextPage = await router(sessionId, pagePrefix);
+        const rootPage = 'verification-code'
+        const nextPage = await router(rootPage, sessionId, pagePrefix);
 
         return res.redirect(302, `${pagePrefix}/${nextPage}`);
       }

@@ -23,6 +23,13 @@ export default function Index({}) {
           { t('common:buttons.start') }
         </Button>
       </Link>
+
+      <br />
+      <Link href={'/sprint-60/verification-code'}>
+        <Button isStartButton>
+          Start Sprint 60
+        </Button>
+      </Link>
     </>
   )
 }

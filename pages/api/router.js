@@ -1,10 +1,9 @@
 import { getDataForPage } from '@/lib/session';
 import { conditionMatch } from '@/lib/condition-match';
 
-export default async function router(sessionId, pagePrefix = '') {
+export default async function router(rootPage, sessionId, pagePrefix = '') {
   console.log('Router running ...');
 
-  const rootPage = 'start';
   if (rootPage) {
     console.log(`Root page is '${rootPage}'`);
     return await handleRouting(rootPage, pagePrefix, sessionId);
@@ -17,7 +16,7 @@ async function handleRouting(pageId, pagePrefix, sessionId) {
   console.log(`Checking config for page '${pageId}'`);
   let config;
   try {
-    config = require(`./page-configurations${pagePrefix}/${pageId}.js`);
+    config = await import(`./page-configurations${pagePrefix}/${pageId}`);
   } catch (err) {
     console.log(`Router error: no page config found for page ${pageId} or config is badly formatted`);
     return pageId;

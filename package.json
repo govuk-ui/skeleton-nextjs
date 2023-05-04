@@ -16,6 +16,7 @@
     "eslint-config-next": "13.3.0",
     "govuk-ui": "0.0.136",
     "i18next": "22.4.15",
+    "luxon": "^3.3.0",
     "next": "13.3.0",
     "next-i18next": "13.2.2",
     "react": "18.2.0",
