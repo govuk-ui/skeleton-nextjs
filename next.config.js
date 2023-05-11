@@ -2,7 +2,10 @@ const { i18n } = require('./next-i18next.config');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
+  experimental: {
+    serverActions: true,
+  },
   output: 'standalone', // Needed for docker,
   env: {
     SESSION_COOKIE_NAME: process.env.SESSION_COOKIE_NAME || 'session_cookie',
