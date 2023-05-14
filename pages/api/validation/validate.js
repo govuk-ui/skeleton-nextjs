@@ -63,6 +63,12 @@ export const validate = (data, config, pageId) => {
 
   let errors = {};
   for (const [key, value] of Object.entries(config.validation)) {
+    if (value.condition) {
+      const conditionAnswer = data[value.condition.field];
+      if (!(conditionAnswer?.includes(value.condition.value))) {
+        continue;
+      }
+    }
     const validationResult = handleValidation(data, key, value);
     if (validationResult) {
       errors[key] = validationResult;
