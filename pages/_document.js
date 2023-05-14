@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import { Container, Footer, FooterMeta, FooterMetaItem, Header, MainWrapper } from 'govuk-ui';
+import { Container, Footer, Header, MainWrapper } from 'govuk-ui';
 import Script from 'next/script';
 
 export default function Document() {

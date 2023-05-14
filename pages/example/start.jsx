@@ -1,19 +1,18 @@
 import { Label, Legend, RadioItem, Radios, Button, BackLink } from 'govuk-ui';
 import Head from 'next/head';
 import { getPageData } from '@/helpers/get-page-data';
-import { renderErrorSummary } from '@/helpers/render-error-summary';
+import { TwoThirdsLayout } from '@/layouts/TwoThirdsLayout';
 
 export const getServerSideProps = async (context) => await getPageData(context);
 
-export default function Start({ pageId, data, validation }) {
+export default function Start({ pageId, data, errors }) {
   return (
-    <form action={`/api/form-handler?pageId=${pageId}`} method="post">
+    <TwoThirdsLayout pageId={pageId} data={data} errors={errors}>
       <Head>
         <title>Start page</title>
       </Head>
-      <BackLink href='/'/>
-      { validation && renderErrorSummary(validation) }
-      <Radios name="whereDoYouLive" value={data?.whereDoYouLive} errorMessage={validation?.whereDoYouLive?.inline}>
+
+      <Radios name="whereDoYouLive" value={data?.whereDoYouLive} errorMessage={errors?.whereDoYouLive?.inline}>
         <Legend isPageHeading classes="govuk-fieldset__legend--l">
           Where do you live?
         </Legend>
@@ -24,7 +23,9 @@ export default function Start({ pageId, data, validation }) {
           <Label>Somewhere else</Label>
         </RadioItem>
       </Radios>
+
       <Button>Continue</Button>
-    </form>
+
+    </TwoThirdsLayout>
   )
 }

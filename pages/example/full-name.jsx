@@ -1,25 +1,24 @@
 import { Typography } from 'govuk-ui';
 import Head from 'next/head';
 import { Button } from 'govuk-ui';
+import { getPageData } from '@/helpers/get-page-data';
+import { TwoThirdsLayout } from '@/layouts/TwoThirdsLayout';
 
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      pageId: context.resolvedUrl
-    }
-  }
-}
+export const getServerSideProps = async (context) => await getPageData(context);
 
-export default function Start({ pageId }) {
+export default function Start({ pageId, data, errors }) {
   return (
-    <form action={`/api/form-handler?pageId=${pageId}`} method="post">
+    <TwoThirdsLayout pageId={pageId} data={data} errors={errors}>
       <Head>
         <title>Full name</title>
       </Head>
+
       <Typography variant="l" component="h1">
         Full name
       </Typography>
+
       <Button>Continue</Button>
-    </form>
+
+    </TwoThirdsLayout>
   )
 }

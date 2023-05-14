@@ -21,7 +21,6 @@ export default async function validate(sessionId, pageId, pageConfig) {
     await validationSchema.validate({ ...pageData, testField: '' }, { abortEarly: false });
   } catch (validationErrors) {
     console.log(`Validation errors found for page: ${pageId}`);
-    console.log('errors: ', validationErrors);
     return yupErrorToErrorObject(validationErrors);
   }
 }

@@ -3,14 +3,14 @@ import { ErrorSummary, ErrorSummaryMessage } from "govuk-ui";
 /**
  * Render error summary
  *
- * @param validation
+ * @param errors
  * @returns {JSX.Element}
  */
-export const renderErrorSummary = (validation) => {
+export const renderErrorSummary = (errors) => {
   return (
     <ErrorSummary>
-      { Object.keys(validation).map((key) => (
-        <ErrorSummaryMessage id={key} key={key}>{validation[key].summary}</ErrorSummaryMessage>
+      { Object.keys(errors).map((key) => (
+        <ErrorSummaryMessage id={key} key={key}>{errors[key].summary}</ErrorSummaryMessage>
       ))}
     </ErrorSummary>
   );
