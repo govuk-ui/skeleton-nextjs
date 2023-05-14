@@ -1,11 +1,25 @@
 import { urls } from '@/lib/urls';
-import { string } from 'yup';
 import { validationError } from '@/lib/validation-error';
+import { textInput } from '@/pages/api/validation/validation-types';
 
 module.exports = {
   next: urls.fullName,
   validation: {
-    whereDoYouLive: string()
-      .required(validationError('Select where you live?'))
+    fullName: {
+      type: textInput,
+      options: {
+        minLength: 5,
+      },
+      errors: {
+        required: validationError('Enter a first name.'),
+        minLength: validationError('First name too short.'),
+      },
+    },
+    lastName: {
+      type: textInput,
+      errors: {
+        required: validationError('Enter a last name.'),
+      },
+    }
   }
 }

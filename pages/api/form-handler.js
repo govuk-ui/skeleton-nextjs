@@ -4,7 +4,7 @@ import {
   setValidationErrorsForPage
 } from "@/lib/session";
 import router from './router';
-import validate from "./validate";
+import { validate } from "./validation/validate";
 
 export default async function handler (req, res) {
   if (req.method !== 'POST') {
@@ -17,11 +17,6 @@ export default async function handler (req, res) {
   const lastSegment = pathSegments.pop();
   // Prefix is everything before the lastSegment, e.g. /example
   const pathBeforeLastSegment = pathSegments.join('/');
-
-  console.log("Page ids");
-  console.log(fullPath);
-  console.log(lastSegment);
-  console.log(pathBeforeLastSegment);
 
   try {
     const sessionId = req.cookies[process.env.SESSION_COOKIE_NAME];
@@ -39,7 +34,7 @@ export default async function handler (req, res) {
     }
 
     if (pageConfig) {
-      const validationErrors = await validate(sessionId, lastSegment, pageConfig);
+      const validationErrors = validate(req.body, pageConfig, lastSegment);
       if (validationErrors) {
         await setValidationErrorsForPage(sessionId, lastSegment, validationErrors)
         return res.redirect(302, `${fullPath}`);
