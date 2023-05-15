@@ -5,7 +5,7 @@ import {
 } from "@/lib/session";
 import route from './routing/route';
 import { validate } from "./validation/validate";
-import { settings } from "../../lib/urls";
+import { settings } from '@/lib/urls';
 
 export default async function handler (req, res) {
   if (req.method !== 'POST') {
