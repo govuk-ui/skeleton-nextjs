@@ -1,4 +1,4 @@
-const {validationError} = require('@/lib/validation-error');
+const {validationError} = require('@/pages/api/validation/validation-error');
 
 class RadioValidator {
   constructor(options, errors) {

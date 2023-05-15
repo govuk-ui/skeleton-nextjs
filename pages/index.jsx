@@ -1,8 +1,8 @@
-import { Button, Typography } from 'govuk-ui';
+import { Typography } from 'govuk-ui';
 import Head from 'next/head';
-import Link from 'next/link';
 import { getPageData } from '@/helpers/get-page-data';
 import { useTranslation } from 'next-i18next';
+import { SummaryCard } from '@/components/SummaryCard';
 
 // To use SSR (Server Side Rendering) you must export a function called getServerSideProps from a page.
 // Read more: https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
@@ -15,21 +15,14 @@ export default function Index({}) {
       <Head>
         <title>{ `${ t('home:pageTitle') } - ${ t('common:govuk') }` }</title>
       </Head>
-      <Typography variant="l" component="h1">
-        { t('home:pageTitle') }
-      </Typography>
-      <Link href={'/example/start'}>
-        <Button isStartButton>
-          { t('common:buttons.start') }
-        </Button>
-      </Link>
 
-      <br />
-      <Link href={'/sprint-60/verification-code'}>
-        <Button isStartButton>
-          Start Sprint 60
-        </Button>
-      </Link>
+      <Typography variant="l" component="h1">
+        Welcome to the govuk-ui React example project!
+      </Typography>
+
+      <SummaryCard title="Example journey" href="/example/start" description={
+        "This is an example journey that uses the govuk-ui React components, and a config driven approach to form handling."
+      } />
     </>
   )
 }

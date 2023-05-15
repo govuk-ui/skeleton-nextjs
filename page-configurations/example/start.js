@@ -1,19 +1,24 @@
 import { urls } from '@/lib/urls';
-import { validationError } from '@/lib/validation-error';
+import { validationError } from '@/pages/api/validation/validation-error';
 import { textInput } from '@/pages/api/validation/validation-types';
-import { value } from '@/pages/api/validation/validation-matchers';
 
 module.exports = {
-  next: urls.fullName,
+  next: urls.dateOfBirth,
   validation: {
-    fullName: {
+    firstName: {
       type: textInput,
-      options: {
-        minLength: 5,
-      },
       errors: {
         required: validationError('Enter a first name.'),
-        minLength: validationError('First name too short.'),
+      },
+    },
+    middleNames: {
+      type: textInput,
+      options: {
+        required: false, // Setting required to false won't show the error message if the field is empty, but will still validate the field if it has a value.
+        maxLength: 50
+      },
+      errors: {
+        maxLength: validationError('Middle names must be no more than 50 characters.'),
       },
     },
     lastName: {
@@ -21,10 +26,6 @@ module.exports = {
       errors: {
         required: validationError('Enter a last name.'),
       },
-      condition: {
-        field: 'fullName',
-        value: 'yes',
-      }
     }
   }
 }

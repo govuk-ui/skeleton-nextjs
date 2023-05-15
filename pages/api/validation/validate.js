@@ -40,14 +40,11 @@ const handleValidation = (data, field, config) => {
   }
 
   if (config.type === 'dateInput') {
-    const dayValid = validator.validate(data[`${field}-day`], 'day');
-    const monthValid = validator.validate(data[`${field}-month`], 'month');
-    const yearValid = validator.validate(data[`${field}-year`], 'year');
+    const day = data[`${field}-day`];
+    const month = data[`${field}-month`];
+    const year = data[`${field}-year`];
+    return validator.validate(`${day}/${month}/${year}`);
 
-    // TODO: Clean up the date validation
-    if (dayValid) return dayValid;
-    if (monthValid) return monthValid;
-    if (yearValid) return yearValid;
   } else if (config.type === 'match') {
     return validator.validate(data[`${field}`], data[`${validationOptions.matchTo}`]);
   } else {
@@ -63,6 +60,7 @@ export const validate = (data, config, pageId) => {
 
   let errors = {};
   for (const [key, value] of Object.entries(config.validation)) {
+    // Skip validation of current field if condition is not met
     if (value.condition) {
       const conditionAnswer = data[value.condition.field];
       if (!(conditionAnswer?.includes(value.condition.value))) {

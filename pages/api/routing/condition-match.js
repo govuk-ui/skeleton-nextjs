@@ -1,5 +1,20 @@
 import { match } from './match';
 
+const arraysAreEqual = (array1, array2) => {
+  if (array1.length === array2.length) {
+    return array1.every((element) => {
+      return !!array2.includes(element);
+    });
+  }
+  return false;
+};
+
+const arrayContains = (array, values) => {
+  if (!array || !values) return false;
+  if (!Array.isArray(array) || Array.isArray(values)) return false;
+  return array.some((item) => values.includes(item));
+};
+
 export const conditionMatch = (routingConfig, data) => {
   console.log('Conditional match check ...');
   const matchValue = (condition, value) => condition.field && condition.value && value === condition.value;

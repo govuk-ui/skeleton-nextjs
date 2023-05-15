@@ -1,4 +1,4 @@
-import { Label, Button, Input, Radios, Legend, RadioItem } from 'govuk-ui';
+import { Label, Input, Typography, Hint } from 'govuk-ui';
 import Head from 'next/head';
 import { getPageData } from '@/helpers/get-page-data';
 import { TwoThirdsLayout } from '@/layouts/TwoThirdsLayout';
@@ -12,31 +12,22 @@ export default function Start({ pageId, data, errors }) {
         <title>Start page</title>
       </Head>
 
-      <Input name="fullName" value={data?.fullName} errorMessage={errors?.fullName?.inline}>
-        <Label>What is your first name?</Label>
+      <Typography component="h1" variant="l">
+        What is your full name?
+      </Typography>
+
+      <Input name="firstName" value={data?.firstName} errorMessage={errors?.firstName?.inline}>
+        <Label>First name</Label>
+      </Input>
+
+      <Input name="middleNames" value={data?.middleNames} errorMessage={errors?.middleNames?.inline}>
+        <Label>Middle names</Label>
+        <Hint>Leave this empty if you don&apos;t have any</Hint>
       </Input>
 
       <Input name="lastName" value={data?.lastName} errorMessage={errors?.lastName?.inline}>
-        <Label>What is your last name?</Label>
+        <Label>Last name</Label>
       </Input>
-
-      <Radios name="radios-example" value={data?.['radios-example']} errorMessage={errors?.['radios-example']?.inline}>
-        <Legend>
-          Select an option
-        </Legend>
-        <RadioItem value="one">
-          <Label>Option 1</Label>
-        </RadioItem>
-        <RadioItem value="two">
-          <Label>Option 2</Label>
-        </RadioItem>
-        <RadioItem value="three">
-          <Label>Option 3</Label>
-        </RadioItem>
-      </Radios>
-
-      <Button>Continue</Button>
-
     </TwoThirdsLayout>
   )
 }

@@ -3,8 +3,9 @@ import {
   setDataForPage,
   setValidationErrorsForPage
 } from "@/lib/session";
-import router from './router';
+import route from './routing/route';
 import { validate } from "./validation/validate";
+import { settings } from "../../lib/urls";
 
 export default async function handler (req, res) {
   if (req.method !== 'POST') {
@@ -26,7 +27,7 @@ export default async function handler (req, res) {
 
     let pageConfig;
     try {
-      pageConfig = await import(`../../page-configurations${fullPath}`);
+      pageConfig = await import(`../../page-configurations${fullPath}.js`);
     } catch (e) {
       console.error(`No page config found for page ${fullPath} or config is badly formatted, redirecting back to ${fullPath}`);
       console.error(e);
@@ -43,9 +44,8 @@ export default async function handler (req, res) {
       console.log(`No validation errors, clearing any existing validation state for page: ${lastSegment}`)
       await clearValidationErrorsForPage(sessionId, lastSegment);
 
-      // TODO: Figure out a way to make this root page configurable for each group of pages
-      const rootPage = 'start'
-      const nextPage = await router(rootPage, sessionId, pathBeforeLastSegment);
+      const rootPage = settings.rootPage;
+      const nextPage = await route(rootPage, sessionId, pathBeforeLastSegment);
 
       return res.redirect(302, `${pathBeforeLastSegment}/${nextPage}`);
     }
