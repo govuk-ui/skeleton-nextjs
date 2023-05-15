@@ -20,7 +20,7 @@ export default function Index({}) {
         Welcome to the govuk-ui React example project!
       </Typography>
 
-      <SummaryCard title="Example journey" href="/example/start" description={
+      <SummaryCard title="Example journey" href="/example/full-name" description={
         "This is an example journey that uses the govuk-ui React components, and a config driven approach to form handling."
       } />
     </>
