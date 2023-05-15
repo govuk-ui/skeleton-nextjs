@@ -7,7 +7,7 @@ export const TwoThirdsLayout = ({ pageId, data, errors, hideBackLink = false, hi
       <Grid variant="two-thirds">
         <form action={`/api/form-handler?pageId=${pageId}`} method="post">
           {/* TODO: Dynamically get back link href */}
-          { !hideBackLink && <BackLink href='/sprint-60/start' /> }
+          { !hideBackLink && <BackLink href='/' /> }
           { errors && renderErrorSummary(errors) }
           { children }
           { !hideContinueButton && (

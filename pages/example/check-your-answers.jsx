@@ -28,7 +28,7 @@ export const getServerSideProps = async (context) => {
 }
 
 export default function CheckYourAnswers({ data }) {
-  const startPageData = data[urls.start];
+  const fullNamePageData = data[urls.fullName];
   const { 'dateOfBirth-day': day, 'dateOfBirth-month': month, 'dateOfBirth-year': year } = data[urls.dateOfBirth];
   const dateOfBirth = DateTime.fromFormat(`${day}-${month}-${year}`, 'd-m-yyyy').toFormat('d MMMM yyyy');
 
@@ -46,10 +46,10 @@ export default function CheckYourAnswers({ data }) {
         <SummaryListItem>
           <SummaryListKey>Full name</SummaryListKey>
           <SummaryListValue>
-            { `${startPageData.firstName} ${startPageData.middleNames} ${startPageData.lastName}` }
+            { `${fullNamePageData.firstName} ${fullNamePageData.middleNames} ${fullNamePageData.lastName}` }
           </SummaryListValue>
           <SummaryListActions>
-            <Link href={`${urls.start}#fullName`} className="govuk-link govuk-link--no-visited-state">Change</Link>
+            <Link href={`${urls.fullName}#fullName`} className="govuk-link govuk-link--no-visited-state">Change</Link>
           </SummaryListActions>
         </SummaryListItem>
 
