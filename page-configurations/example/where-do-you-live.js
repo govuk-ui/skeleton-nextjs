@@ -1,18 +1,18 @@
 import { urls } from '@/lib/urls';
 import { validationError } from '@/pages/api/validation/validation-error';
-import { dateInput } from '@/pages/api/validation/validation-types';
+import { radios } from '@/pages/api/validation/validation-types';
 
 module.exports = {
   next: [
     {
-      page: urls.whereDoYouLive,
+      page: urls.checkYourAnswers,
     },
   ],
   validation: {
-    dateOfBirth: {
-      type: dateInput,
+    whereDoYouLive: {
+      type: radios,
       errors: {
-        required: validationError('Enter a valid date of birth.'),
+        required: validationError('You must select an option.'),
       },
     },
   }

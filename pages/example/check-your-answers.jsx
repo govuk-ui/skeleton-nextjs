@@ -4,7 +4,6 @@ import {
   SummaryListActions,
   SummaryListItem,
   SummaryListKey,
-  SummaryListRow,
   SummaryListValue,
   Typography
 } from 'govuk-ui';
@@ -27,8 +26,14 @@ export const getServerSideProps = async (context) => {
   }
 }
 
+const capitaliseFirstLetter = (answer) => {
+  if (!answer) {
+    return;
+  }
+  return answer.charAt(0).toUpperCase() + answer.slice(1); 
+}
+
 export default function CheckYourAnswers({ data }) {
-  const fullNamePageData = data[urls.fullName];
   const { 'dateOfBirth-day': day, 'dateOfBirth-month': month, 'dateOfBirth-year': year } = data[urls.dateOfBirth];
   const dateOfBirth = DateTime.fromFormat(`${day}-${month}-${year}`, 'd-m-yyyy').toFormat('d MMMM yyyy');
 
@@ -46,7 +51,7 @@ export default function CheckYourAnswers({ data }) {
         <SummaryListItem>
           <SummaryListKey>Full name</SummaryListKey>
           <SummaryListValue>
-            { `${fullNamePageData.firstName} ${fullNamePageData.middleNames} ${fullNamePageData.lastName}` }
+            { `${data[urls.fullName].firstName} ${data[urls.fullName].middleNames} ${data[urls.fullName].lastName}` }
           </SummaryListValue>
           <SummaryListActions>
             <Link href={`${urls.fullName}#fullName`} className="govuk-link govuk-link--no-visited-state">Change</Link>
@@ -58,6 +63,14 @@ export default function CheckYourAnswers({ data }) {
           <SummaryListValue>{ dateOfBirth }</SummaryListValue>
           <SummaryListActions>
             <Link href={`${urls.dateOfBirth}#dateOfBirth-day`} className="govuk-link govuk-link--no-visited-state">Change</Link>
+          </SummaryListActions>
+        </SummaryListItem>
+
+        <SummaryListItem>
+          <SummaryListKey>Where you live</SummaryListKey>
+          <SummaryListValue>{ capitaliseFirstLetter(data[urls.whereDoYouLive].whereDoYouLive) }</SummaryListValue>
+          <SummaryListActions>
+            <Link href={`${urls.whereDoYouLive}#whereDoYouLive`} className="govuk-link govuk-link--no-visited-state">Change</Link>
           </SummaryListActions>
         </SummaryListItem>
       </SummaryList>
