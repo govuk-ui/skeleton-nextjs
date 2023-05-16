@@ -14,7 +14,7 @@ module.exports = {
       },
     },
     {
-      page: urls.whereYouLive,
+      page: urls.checkYourAnswers,
     },
   ],
   validation: {
