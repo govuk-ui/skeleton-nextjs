@@ -1,4 +1,4 @@
-import { Button, SummaryList, SummaryListItem, SummaryListKey, SummaryListValue, Typography } from 'govuk-ui';
+import { Button, InsetText, SummaryList, SummaryListItem, SummaryListKey, SummaryListValue, Typography } from 'govuk-ui';
 import Head from 'next/head';
 import { getPageData } from '@/helpers/get-page-data';
 import { useTranslation } from 'next-i18next';
@@ -18,16 +18,22 @@ export default function Index({}) {
       <Typography variant="l" component="h1">
         GOVUK-UI example project
       </Typography>
+      
+      <Typography>Use this project as a starting point to build your own GOVUK service</Typography>
 
-      <Typography>Paragraph about this being a Next project</Typography>
+      <InsetText>
+        This particular project is built with <b>React</b> and <b>Next</b>, making use of Server Side Rendering to allow the service to be built with full accesibility, and to work without any clioent side JavaScript (although some client side JavaScript is used to augment controls if available)
+        <br/><br/>
+        This project uses the <b>pages</b> direcdtory and not the <b>app</b> directory in Next.
+        <br/><br/>
+        GOVUK-UI is designed to be a framework agnostic component library for React. Using Next is one of many ways to make use of this library, you are free to use any framework you like
+      </InsetText>
 
       <Typography variant='m'>
         Example journey
       </Typography>
 
       <Typography>
-        Use this example journey to kick-start the development of your own GOVUK service.
-        <br/>
         This simple journey consists of the following pages.
       </Typography>
 
@@ -87,27 +93,48 @@ export default function Index({}) {
         </SummaryListItem>
       </SummaryList>
 
+      <Typography>
+        Click here to start the example journey
+      </Typography>
+      <Button isStartButton href='/example/full-name'>
+        Start
+      </Button>
+
       <Typography variant='m'>
-        Routing
+        Journey routing
       </Typography>
       <Typography>
-        A paragraph to explain how the routing works
+        You will need to write your own methods for routing from one page to another. 
+        In this example, each page posts to the same method (form-handler.js) in Next&apos;s api directory. 
+        This saves the users answers either to a file or to redis and then uses a json configuration file based system to work out where to send the user next. 
+        In the directory &apos;page-configurations&apos; there is a one file per page.  These configurations contain information for validation and routing and the form-handler uses them for routing. 
+        Feel free to copy this method of routing, or to write your own.  The routing is beyond the scope of the GOVUK-UI component library.
       </Typography>
 
       <Typography variant='m'>
         Validation
       </Typography>
-      <Typography>A paragraph to explain how the validation works</Typography>
+      <Typography>
+        You will need to write your own methods for validating froms based on a users answers.
+        Validation is done from the validation folder in this example project.  The validation is triggered on form post 
+        as part of the form-handler.js and file based configuration mentioned in the Journey routing section above.
+        Feel free to copy this method of validation, or write your own.  Validation is beyond the scope of the GOVUK-UI component library, 
+        but the controls are in place to supposrt it.
+      </Typography>
 
       <Typography variant='m'>
         Creating a new page
       </Typography>
-      <Typography>A paragraph to explain how the validation works</Typography>
-
-      <Button isStartButton href='/example/full-name'>
-        Start
-      </Button>
-
+      <Typography>
+        To add a new page to this example project.
+        <ul className='govuk-list govuk-list--number'>
+          <li>Create a jsx view in the /example folder named appropriately for hte question you want to ask</li>
+          <li>Extend the urls constant in the /lib/urls.js file, you will want this to match your views filename</li>
+          <li>Change the configuration file for the page that will appear before you new page in the journey to point it to your new page</li>
+          <li>Create a configuration file in the page-configurations folder and name it the same as your view, and url</li>
+          <li>Write the configuration file to add validation and to tell the router which page will come after your new page</li>
+        </ul>
+      </Typography>
     </>
   )
 }
