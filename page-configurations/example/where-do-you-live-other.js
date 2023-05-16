@@ -5,7 +5,7 @@ import { textInput } from '@/pages/api/validation/validation-types';
 module.exports = {
   next: [
     {
-      page: urls.checkYourAnswers,
+      page: urls.contactPreferences,
     },
   ],
   validation: {

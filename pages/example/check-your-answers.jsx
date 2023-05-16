@@ -26,7 +26,7 @@ export const getServerSideProps = async (context) => {
   }
 }
 
-const capitaliseFirstLetter = (answer) => {
+const capitalise = (answer) => {
   if (!answer) {
     return;
   }
@@ -72,7 +72,7 @@ export default function CheckYourAnswers({ data }) {
         <SummaryListItem>
           <SummaryListKey>Where you live</SummaryListKey>
           <SummaryListValue>
-            <Typography>{ capitaliseFirstLetter(data[urls.whereDoYouLive].whereDoYouLive) }</Typography></SummaryListValue>
+            <Typography>{ capitalise(data[urls.whereDoYouLive].whereDoYouLive) }</Typography></SummaryListValue>
           <SummaryListActions>
             <Link href={`${urls.whereDoYouLive}#whereDoYouLive`} className="govuk-link govuk-link--no-visited-state">Change</Link>
           </SummaryListActions>
@@ -82,7 +82,7 @@ export default function CheckYourAnswers({ data }) {
           <SummaryListItem>
             <SummaryListKey>Where you live other</SummaryListKey>
             <SummaryListValue>
-              <Typography>{ capitaliseFirstLetter(data[urls.whereDoYouLiveOther].whereDoYouLiveOther) }</Typography></SummaryListValue>
+              <Typography>{ capitalise(data[urls.whereDoYouLiveOther].whereDoYouLiveOther) }</Typography></SummaryListValue>
             <SummaryListActions>
               <Link href={`${urls.whereDoYouLiveOther}#whereDoYouLiveOther`} className="govuk-link govuk-link--no-visited-state">Change</Link>
             </SummaryListActions>
@@ -93,7 +93,7 @@ export default function CheckYourAnswers({ data }) {
           <SummaryListKey>Contact preferences</SummaryListKey>
           <SummaryListValue>
             <ul className="govuk-list govuk-list--bullet">
-              { contactPreferences.map((preference) => <li key={preference}>{ preference }</li>) }
+              { contactPreferences.map((preference) => <li key={preference}>{ capitalise(preference) }</li>) }
             </ul>
           </SummaryListValue>
           <SummaryListActions>

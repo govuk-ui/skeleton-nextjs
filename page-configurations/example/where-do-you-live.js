@@ -14,7 +14,7 @@ module.exports = {
       }
     },
     {
-      page: urls.checkYourAnswers,
+      page: urls.contactPreferences,
     },
   ],
   validation: {
