@@ -2,12 +2,10 @@ import { Label, Legend, Radios, RadioItem } from 'govuk-ui';
 import Head from 'next/head';
 import { getPageData } from '@/helpers/get-page-data';
 import { TwoThirdsLayout } from '@/layouts/TwoThirdsLayout';
-import { urls } from '@/lib/urls';
 
 export const getServerSideProps = async (context) => await getPageData(context);
 
 export default function WhereDoYouLive({ pageId, data, errors }) {
-  console.log(data);
   return (
     <TwoThirdsLayout pageId={pageId} data={data} errors={errors}>
       <Head>
@@ -41,7 +39,7 @@ export default function WhereDoYouLive({ pageId, data, errors }) {
             Northern Ireland
           </Label>
         </RadioItem>
-        <RadioItem value="somwewhereElse">
+        <RadioItem value="other">
           <Label>
             Somewhere Else
           </Label>

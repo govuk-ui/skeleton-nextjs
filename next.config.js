@@ -11,6 +11,19 @@ const nextConfig = {
     REDIS_PORT: process.env.REDIS_PORT || 6380,
   },
   i18n,
+  async headers() {
+    return [
+      {
+        source: '/api/form-handler',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, max-age=0',
+          },
+        ],
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig

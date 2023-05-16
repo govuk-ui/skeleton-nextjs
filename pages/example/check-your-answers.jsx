@@ -68,11 +68,23 @@ export default function CheckYourAnswers({ data }) {
 
         <SummaryListItem>
           <SummaryListKey>Where you live</SummaryListKey>
-          <SummaryListValue>{ capitaliseFirstLetter(data[urls.whereDoYouLive].whereDoYouLive) }</SummaryListValue>
+          <SummaryListValue>
+            <Typography>{ capitaliseFirstLetter(data[urls.whereDoYouLive].whereDoYouLive) }</Typography></SummaryListValue>
           <SummaryListActions>
             <Link href={`${urls.whereDoYouLive}#whereDoYouLive`} className="govuk-link govuk-link--no-visited-state">Change</Link>
           </SummaryListActions>
         </SummaryListItem>
+
+        { data[urls.whereDoYouLiveOther] && (
+          <SummaryListItem>
+            <SummaryListKey>Where you live other</SummaryListKey>
+            <SummaryListValue>
+              <Typography>{ capitaliseFirstLetter(data[urls.whereDoYouLiveOther].whereDoYouLiveOther) }</Typography></SummaryListValue>
+            <SummaryListActions>
+              <Link href={`${urls.whereDoYouLiveOther}#whereDoYouLiveOther`} className="govuk-link govuk-link--no-visited-state">Change</Link>
+            </SummaryListActions>
+          </SummaryListItem>
+        )}
       </SummaryList>
 
       <Typography variant="m" component="h2">
