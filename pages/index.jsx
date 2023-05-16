@@ -47,6 +47,44 @@ export default function Index({}) {
             <Typography>Field level validation</Typography>
           </SummaryListValue>
         </SummaryListItem>
+        <SummaryListItem>
+          <SummaryListKey>Where do you live page</SummaryListKey>
+          <SummaryListValue>
+            <Typography>Uses the <b>Radios</b> component to display options to the user</Typography>
+            <Typography>Field level validation</Typography>
+          </SummaryListValue>
+        </SummaryListItem>
+        <SummaryListItem>
+          <SummaryListKey>Where do you live other page</SummaryListKey>
+          <SummaryListValue>
+            <Typography>This page will only appear in the journey if the user selects the answer 'other' from the 'where do you live' page</Typography>
+            <Typography>Uses a <b>TextInput</b> component</Typography>
+            <Typography>Field level validation</Typography>
+          </SummaryListValue>
+        </SummaryListItem>
+        <SummaryListItem>
+          <SummaryListKey>Contact preferences page</SummaryListKey>
+          <SummaryListValue>
+            <Typography>Uses the <b>Checkboxes</b> component</Typography>
+            <Typography>One option has a conditional reveal to unfold an additional <b>TextInput</b> component</Typography>
+            <Typography>One option has exclusive behaviour, to deselect all other options when selected</Typography>
+            <Typography>Field level validation</Typography>
+          </SummaryListValue>
+        </SummaryListItem>
+        <SummaryListItem>
+          <SummaryListKey>Check your answers page</SummaryListKey>
+          <SummaryListValue>
+            <Typography>Uses the <b>SummaryList</b> component to show the users answers before submission</Typography>
+            <Typography>Each answer has a <b>Change</b> link to allow the user to change an answer and quickly jump back to the check your ansers page</Typography>
+          </SummaryListValue>
+        </SummaryListItem>
+        <SummaryListItem>
+          <SummaryListKey>Application submitted page</SummaryListKey>
+          <SummaryListValue>
+            <Typography>Uses the <b>Panel</b> component to show the users that the application is complete and provides them with a reference number</Typography>
+            <Typography>Each answer has a <b>Change</b> link to allow the user to change an answer and quickly jump back to the check your ansers page</Typography>
+          </SummaryListValue>
+        </SummaryListItem>
       </SummaryList>
 
       <Typography variant='m'>
