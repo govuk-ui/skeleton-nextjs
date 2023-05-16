@@ -26,8 +26,14 @@ export const getServerSideProps = async (context) => {
   }
 }
 
+const capitaliseFirstLetter = (answer) => {
+  if (!answer) {
+    return;
+  }
+  return answer.charAt(0).toUpperCase() + answer.slice(1);
+}
+
 export default function CheckYourAnswers({ data }) {
-  const fullNamePageData = data[urls.fullName];
   const { 'dateOfBirth-day': day, 'dateOfBirth-month': month, 'dateOfBirth-year': year } = data[urls.dateOfBirth];
   const dateOfBirth = DateTime.fromFormat(`${day}-${month}-${year}`, 'd-m-yyyy').toFormat('d MMMM yyyy');
   const contactPreferences = data[urls.contactPreferences].contactPreferences;
@@ -48,7 +54,7 @@ export default function CheckYourAnswers({ data }) {
         <SummaryListItem>
           <SummaryListKey>Full name</SummaryListKey>
           <SummaryListValue>
-            { `${fullNamePageData.firstName} ${fullNamePageData.middleNames} ${fullNamePageData.lastName}` }
+            { `${data[urls.fullName].firstName} ${data[urls.fullName].middleNames} ${data[urls.fullName].lastName}` }
           </SummaryListValue>
           <SummaryListActions>
             <a href={`${urls.fullName}#fullName`} className="govuk-link govuk-link--no-visited-state">Change</a>
@@ -62,6 +68,26 @@ export default function CheckYourAnswers({ data }) {
             <a href={`${urls.dateOfBirth}#dateOfBirth-day`} className="govuk-link govuk-link--no-visited-state">Change</a>
           </SummaryListActions>
         </SummaryListItem>
+
+        <SummaryListItem>
+          <SummaryListKey>Where you live</SummaryListKey>
+          <SummaryListValue>
+            <Typography>{ capitaliseFirstLetter(data[urls.whereDoYouLive].whereDoYouLive) }</Typography></SummaryListValue>
+          <SummaryListActions>
+            <Link href={`${urls.whereDoYouLive}#whereDoYouLive`} className="govuk-link govuk-link--no-visited-state">Change</Link>
+          </SummaryListActions>
+        </SummaryListItem>
+
+        { data[urls.whereDoYouLiveOther] && (
+          <SummaryListItem>
+            <SummaryListKey>Where you live other</SummaryListKey>
+            <SummaryListValue>
+              <Typography>{ capitaliseFirstLetter(data[urls.whereDoYouLiveOther].whereDoYouLiveOther) }</Typography></SummaryListValue>
+            <SummaryListActions>
+              <Link href={`${urls.whereDoYouLiveOther}#whereDoYouLiveOther`} className="govuk-link govuk-link--no-visited-state">Change</Link>
+            </SummaryListActions>
+          </SummaryListItem>
+        )}
 
         <SummaryListItem>
           <SummaryListKey>Contact preferences</SummaryListKey>
