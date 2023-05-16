@@ -57,7 +57,7 @@ export default function Index({}) {
         <SummaryListItem>
           <SummaryListKey>Where do you live other page</SummaryListKey>
           <SummaryListValue>
-            <Typography>This page will only appear in the journey if the user selects the answer 'other' from the 'where do you live' page</Typography>
+            <Typography>This page will only appear in the journey if the user selects the answer &apos;other&apos; from the &apos;where do you live&apos; page</Typography>
             <Typography>Uses a <b>TextInput</b> component</Typography>
             <Typography>Field level validation</Typography>
           </SummaryListValue>

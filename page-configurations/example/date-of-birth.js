@@ -4,19 +4,7 @@ import { dateInput } from '@/pages/api/validation/validation-types';
 import { greaterThan } from '@/pages/api/validation/validation-matchers';
 
 module.exports = {
-  next: [
-    {
-      page: urls.dateOfBirthIneligible,
-      condition: {
-        field: 'dateOfBirth-year',
-        value: 1955,
-        match: greaterThan,
-      },
-    },
-    {
-      page: urls.checkYourAnswers,
-    },
-  ],
+  next: urls.contactPreferences,
   validation: {
     dateOfBirth: {
       type: dateInput,

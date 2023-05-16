@@ -1,4 +1,4 @@
-import { Label, Button, Input, Typography, Hint, DateInput, Legend } from 'govuk-ui';
+import { Hint, DateInput, Legend } from 'govuk-ui';
 import Head from 'next/head';
 import { getPageData } from '@/helpers/get-page-data';
 import { TwoThirdsLayout } from '@/layouts/TwoThirdsLayout';
@@ -6,7 +6,6 @@ import { TwoThirdsLayout } from '@/layouts/TwoThirdsLayout';
 export const getServerSideProps = async (context) => await getPageData(context);
 
 export default function DateOfBirth({ pageId, data, errors }) {
-  console.log(data);
   return (
     <TwoThirdsLayout pageId={pageId} data={data} errors={errors}>
       <Head>
