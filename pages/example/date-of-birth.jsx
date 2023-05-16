@@ -6,7 +6,6 @@ import { TwoThirdsLayout } from '@/layouts/TwoThirdsLayout';
 export const getServerSideProps = async (context) => await getPageData(context);
 
 export default function DateOfBirth({ pageId, data, errors }) {
-  console.log(data);
   return (
     <TwoThirdsLayout pageId={pageId} data={data} errors={errors}>
       <Head>

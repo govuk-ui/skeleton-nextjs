@@ -16,7 +16,7 @@ class CheckboxesValidator {
   }
 
   validate(value) {
-    if (this.options.required && !value) {
+    if (this.options.required && Array.isArray(value) && value.length === 0) {
       this.error = this.errors.required
     }
 
