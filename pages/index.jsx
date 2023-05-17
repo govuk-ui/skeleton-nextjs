@@ -115,11 +115,11 @@ export default function Index({}) {
         Validation
       </Typography>
       <Typography>
-        You will need to write your own methods for validating froms based on a users answers.
+        You will need to write your own methods for validating forms based on a users answers.
         Validation is done from the validation folder in this example project.  The validation is triggered on form post 
         as part of the form-handler.js and file based configuration mentioned in the Journey routing section above.
         Feel free to copy this method of validation, or write your own.  Validation is beyond the scope of the GOVUK-UI component library, 
-        but the controls are in place to supposrt it.
+        but the controls are in place to support it.
       </Typography>
 
       <Typography variant='m'>
