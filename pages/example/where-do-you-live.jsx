@@ -11,8 +11,8 @@ export default function WhereDoYouLive({ pageId, data, errors }) {
       <Head>
         <title>Where do you live</title>
       </Head>
-      
-      <Radios name="whereDoYouLive" value={ data?.whereDoYouLive}>
+
+      <Radios name="whereDoYouLive" value={data?.whereDoYouLive} errorMessage={errors?.whereDoYouLive?.inline}>
         <Legend
           classes="govuk-fieldset__legend--l"
           isPageHeading

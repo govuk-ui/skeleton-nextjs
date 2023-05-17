@@ -6,6 +6,7 @@ import {
 import route from './routing/route';
 import { validate } from "./validation/validate";
 import { settings } from '@/lib/urls';
+import { normaliseCheckboxData } from '@/helpers/normalise-checkbox-data';
 
 export default async function handler (req, res) {
   if (req.method !== 'POST') {
@@ -21,9 +22,6 @@ export default async function handler (req, res) {
 
   try {
     const sessionId = req.cookies[process.env.SESSION_COOKIE_NAME];
-    await setDataForPage(sessionId, lastSegment, {
-      ...req.body
-    });
 
     let pageConfig;
     try {
@@ -35,7 +33,12 @@ export default async function handler (req, res) {
     }
 
     if (pageConfig) {
-      const validationErrors = validate(req.body, pageConfig, lastSegment);
+      // Ensure that any checkboxes are normalised to arrays
+      const normalisedData = normaliseCheckboxData(req.body, pageConfig);
+      await setDataForPage(sessionId, lastSegment, {
+        ...normalisedData
+      });
+      const validationErrors = validate(normalisedData, pageConfig, lastSegment);
       if (validationErrors) {
         await setValidationErrorsForPage(sessionId, lastSegment, validationErrors)
         return res.redirect(302, `${fullPath}`);
