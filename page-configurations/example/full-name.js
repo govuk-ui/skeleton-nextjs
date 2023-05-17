@@ -3,6 +3,7 @@ import { validationError } from '@/pages/api/validation/validation-error';
 import { textInput } from '@/pages/api/validation/validation-types';
 
 module.exports = {
+  previous: urls.start,
   next: urls.dateOfBirth,
   validation: {
     firstName: {
